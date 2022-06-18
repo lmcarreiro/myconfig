@@ -1,0 +1,7 @@
+[user]
+	email = leonardo.mcarreiro@gmail.com
+	name = Leonardo Carreiro
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
