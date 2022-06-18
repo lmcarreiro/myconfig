@@ -5,7 +5,7 @@
 ```bash
 cd ~
 git clone git@github.com:lmcarreiro/myconfig.git
-ln -s myconfig/.gitconfig
+ln -s myconfig/ubuntu/.gitconfig
 ```
 
 ## Fish
