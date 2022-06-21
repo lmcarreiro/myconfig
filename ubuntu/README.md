@@ -40,6 +40,25 @@ curl -sS https://starship.rs/install.sh | sh
 echo "starship init fish | source" >> ~/.config/fish/config.fish
 ```
 
+## VSCode
+
+```bash
+# Remove conflictng gnome shortcuts
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-up "['<Super><Shift><Alt>Up']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-down "['<Super><Shift><Alt>Down']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "['<Super><Shift>Page_Up', '<Super><Shift><Alt>Left']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "['<Super><Shift>Page_Down', '<Super><Shift><Alt>Right']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Super><Alt>Up']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Super><Alt>Down']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Super>Page_Up', '<Super><Alt>Left']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Super>Page_Down', '<Super><Alt>Right']"
+
+# Link vscode config files
+cd ~
+ln -s ~/myconfig/ubuntu/vscode/settings.json ./.config/Code/User/
+ln -s ~/myconfig/ubuntu/vscode/keybindings.json ./.config/Code/User/
+```
+
 ## Apps
 
 - Install basic apps:
@@ -57,6 +76,10 @@ echo "starship init fish | source" >> ~/.config/fish/config.fish
       - Docker
     - Slack
   - From other repos
+    - CopyQ
+      - `sudo add-apt-repository ppa:hluk/copyq`
+      - `sudo apt update`
+      - `sudo apt install copyq`
     - Docker
       - https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
       - https://docs.docker.com/engine/install/linux-postinstall/
