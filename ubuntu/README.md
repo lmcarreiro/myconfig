@@ -37,7 +37,20 @@ chsh -s /usr/bin/fish
 
 # Install starship
 curl -sS https://starship.rs/install.sh | sh
-echo "starship init fish | source" >> ~/.config/fish/config.fish
+rm -r ./.config/fish/functions/
+ln -s ~/myconfig/ubuntu/fish/config.fish ./.config/fish/
+ln -s ~/myconfig/ubuntu/fish/functions/ ./.config/fish/
+
+# Oh-My-Fish
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+```
+
+## Other setup
+
+```bash
+# Avoid "System limit for number of file watchers reached" errors
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
 ```
 
 ## VSCode
@@ -74,12 +87,16 @@ ln -s ~/myconfig/ubuntu/vscode/keybindings.json ./.config/Code/User/
       - ESLint
       - Smart Column Indenter
       - Docker
+      - Better TOML
+      - EJS Language support
     - Slack
   - From other repos
     - CopyQ
       - `sudo add-apt-repository ppa:hluk/copyq`
       - `sudo apt update`
       - `sudo apt install copyq`
+      - Open setting and set auto-start
+      - TODO: how to save copy/paste history to restore in another system?
     - Docker
       - https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
       - https://docs.docker.com/engine/install/linux-postinstall/
@@ -88,8 +105,19 @@ ln -s ~/myconfig/ubuntu/vscode/keybindings.json ./.config/Code/User/
     - nvm
       - `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash`
       - Check instruction to copy commands to `.bashrc`
+      - Fish integration:
+        - `omf install https://github.com/fabioantunes/fish-nvm`
+        - `omf install https://github.com/edc/bass`
     - ngrok
       - `curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok`
     - NATS cli: download deb from https://github.com/nats-io/natscli/releases
-      - Create context: `nats context save --server="nats.example.com" --creds=./path/to/creds.txt name`
+      - Create context: `nats context save --server="nats.example.com" --creds=/absolute/path/to/creds.txt name`
     - HubStaff
+    - B2 cli
+      - `sudo curl -L https://github.com/Backblaze/B2_Command_Line_Tool/releases/latest/download/b2-linux --output /usr/local/bin/b2`
+      - `sudo chmod +x /usr/local/bin/b2`
+    - FlameShot
+      - `sudo apt install flameshot`
+      - TODO: set shortcuts
+      - TODO: What about videos?
+
