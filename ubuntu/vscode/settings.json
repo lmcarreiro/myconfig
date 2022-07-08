@@ -1,9 +1,13 @@
 {
-    "terminal.integrated.enableMultiLinePasteWarning": false,
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "editor.formatOnSave": true,
-    "editor.formatOnSaveMode": "modificationsIfAvailable",
-    "git.confirmSync": false
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
+  "editor.fontFamily": "Fira Code",
+  "git.confirmSync": false
 }

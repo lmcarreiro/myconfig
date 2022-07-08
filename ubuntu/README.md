@@ -15,6 +15,14 @@ sudo ubuntu-drivers autoinstall
 sudo apt-get update && sudo apt-get upgrade 
 ```
 
+## FiraCode font
+
+```bash
+sudo apt install fonts-firacode
+```
+
+On gnome-terminal, Settings -> Profiles -> Default -> Font -> Fira Code -> 10
+
 ## Git
 
 ```bash
@@ -120,4 +128,7 @@ ln -s ~/myconfig/ubuntu/vscode/keybindings.json ./.config/Code/User/
       - `sudo apt install flameshot`
       - TODO: set shortcuts
       - TODO: What about videos?
+    - NoSqlBooster
+      - TODO: add command to install it to `/home/leonardo/app/nosqlbooster4mongo-7.1.2.AppImage`
+      - `ln -s ~/myconfig/ubuntu/dotLSApps/NoSqlBooster.desktop ~/.local/share/applications/`
 
