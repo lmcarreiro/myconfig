@@ -84,7 +84,7 @@ ln -s ~/myconfig/ubuntu/vscode/keybindings.json ./.config/Code/User/
 
 - Install basic apps:
   - From Ubuntu Software 
-    - 1password
+    - 1password (try https://1password.com/downloads/linux/ instead of Ubuntu Software to have better integration)
     - Brave
       - Enable brave sync
       - Create profiles (personal + work)
