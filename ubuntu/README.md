@@ -89,6 +89,7 @@ ln -s ~/myconfig/ubuntu/vscode/keybindings.json ./.config/Code/User/
       - Enable brave sync
       - Create profiles (personal + work)
     - VSCode
+      - GitHub Pull Requests and Issues
       - Git Graph
       - GitLens
       - Prettier
