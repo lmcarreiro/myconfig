@@ -27,7 +27,8 @@ On gnome-terminal, Settings -> Profiles -> Default -> Font -> Fira Code -> 10
 
 ```bash
 cd ~
-sudo apt install git
+sudo apt-add-repository ppa:git-core/ppa
+sudo apt-get update && sudo apt-get install git
 git clone git@github.com:lmcarreiro/myconfig.git
 ln -s myconfig/ubuntu/.gitconfig
 ```
@@ -37,20 +38,22 @@ ln -s myconfig/ubuntu/.gitconfig
 ```bash
 # Install fish
 sudo apt-add-repository ppa:fish-shell/release-3
-sudo apt update
-sudo apt install fish
+sudo apt update && sudo apt install fish
 
 # Making default
 chsh -s /usr/bin/fish
 
 # Install starship
 curl -sS https://starship.rs/install.sh | sh
-rm -r ./.config/fish/functions/
-ln -s ~/myconfig/ubuntu/fish/config.fish ./.config/fish/
-ln -s ~/myconfig/ubuntu/fish/functions/ ./.config/fish/
 
 # Oh-My-Fish
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+
+# Link config
+rm ./.config/fish/config.fish
+rm -r ./.config/fish/functions/
+ln -s ~/myconfig/ubuntu/fish/config.fish ./.config/fish/
+ln -s ~/myconfig/ubuntu/fish/functions/ ./.config/fish/
 ```
 
 ## Other setup
@@ -60,6 +63,12 @@ curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install 
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
 ```
+
+- Create .ssh/ directory
+
+### Settings
+
+- Switch theme to dark + blue
 
 ## VSCode
 
@@ -76,28 +85,44 @@ gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Sup
 
 # Link vscode config files
 cd ~
-ln -s ~/myconfig/ubuntu/vscode/settings.json ./.config/Code/User/
-ln -s ~/myconfig/ubuntu/vscode/keybindings.json ./.config/Code/User/
+rm ./.config/Code/User/settings.json && ln -s ~/myconfig/ubuntu/vscode/settings.json ./.config/Code/User/
+rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybindings.json ./.config/Code/User/
 ```
 
 ## Apps
 
 - Install basic apps:
   - From Ubuntu Software 
-    - 1password (try https://1password.com/downloads/linux/ instead of Ubuntu Software to have better integration)
+    - 1Password: https://1password.com/downloads/linux/
+      - `curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg`
+      - `echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main' | sudo tee /etc/apt/sources.list.d/1password.list`
+      - `sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/`
+      - `curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol`
+      - `sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22`
+      - `curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg`
+      - `sudo apt update && sudo apt install 1password`
     - Brave
+      - Install steps: https://brave.com/linux/
+        - `sudo apt install apt-transport-https curl`
+        - `sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg`
+        - `echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list`
+        - `sudo apt update && sudo apt install brave-browser`
       - Enable brave sync
       - Create profiles (personal + work)
     - VSCode
-      - GitHub Pull Requests and Issues
-      - Git Graph
-      - GitLens
-      - Prettier
-      - ESLint
-      - Smart Column Indenter
-      - Docker
-      - Better TOML
-      - EJS Language support
+      - Install Steps
+        - Download deb file
+        - `sudo apt install <deb file>`
+      - Extensions:
+        - GitHub Pull Requests and Issues
+        - Git Graph
+        - GitLens
+        - Prettier
+        - ESLint
+        - Smart Column Indenter
+        - Docker
+        - Better TOML
+        - EJS Language support
     - Slack
   - From other repos
     - CopyQ
@@ -127,9 +152,10 @@ ln -s ~/myconfig/ubuntu/vscode/keybindings.json ./.config/Code/User/
       - `sudo chmod +x /usr/local/bin/b2`
     - FlameShot
       - `sudo apt install flameshot`
-      - TODO: set shortcuts
+      - Setup prt scr shortcut to call `flameshot gui`
       - TODO: What about videos?
     - NoSqlBooster
       - TODO: add command to install it to `/home/leonardo/app/nosqlbooster4mongo-7.1.2.AppImage`
+      - `sudo apt install fuse libfuse2`
       - `ln -s ~/myconfig/ubuntu/dotLSApps/NoSqlBooster.desktop ~/.local/share/applications/`
 
