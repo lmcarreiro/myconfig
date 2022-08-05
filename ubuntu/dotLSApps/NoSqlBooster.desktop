@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=NoSqlBooster
-Exec=/home/leonardo/app/nosqlbooster4mongo-7.1.2.AppImage
+Exec=/home/leonardo/app/nosqlbooster4mongo-7.1.5.AppImage
 Comment=NoSqlBooster
 Terminal=false
 Type=Application

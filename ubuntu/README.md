@@ -92,7 +92,12 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
 ## Apps
 
 - Install basic apps:
-  - From Ubuntu Software 
+  - Dependencies
+    - `sudo apt install jq ca-certificates curl gnupg lsb-release apt-transport-https vim`
+    - `sudo apt install fuse libfuse2` # for nosql booster
+    - `sudo apt install wireguard` # for development / kubectl
+    - `sudo snap install kubectl --classic`
+  - Main apps 
     - 1Password: https://1password.com/downloads/linux/
       - `curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg`
       - `echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main' | sudo tee /etc/apt/sources.list.d/1password.list`
@@ -124,18 +129,30 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
         - Better TOML
         - EJS Language support
     - Slack
-  - From other repos
+      - Download .deb and run `sudo apt install <deb file>`
     - CopyQ
       - `sudo add-apt-repository ppa:hluk/copyq`
-      - `sudo apt update`
-      - `sudo apt install copyq`
-      - Open setting and set auto-start
+      - `sudo apt update && sudo apt install copyq`
+      - Open setting and set auto-start and shortcuts
+        - Ctrl+Super+V -> Show main window under mouse cursor
+        - Ctrl+Super+Shift+V -> Paste and copy next
       - TODO: how to save copy/paste history to restore in another system?
     - Docker
       - https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
       - https://docs.docker.com/engine/install/linux-postinstall/
-      - `sudo curl -SL https://github.com/docker/compose/releases/download/v2.6.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose`
-      - `sudo chmod +x /usr/local/bin/docker-compose`
+      - Install
+        - `sudo apt-get update && sudo apt-get install ca-certificates curl gnupg lsb-release`
+        - `sudo mkdir -p /etc/apt/keyrings`
+        - `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`
+        - `echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
+        - `sudo apt-get update`
+        - `sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin`
+      - Post-install:
+        - `sudo groupadd docker`
+        - `sudo usermod -aG docker $USER`
+      - docker-compose
+        - `sudo curl -SL https://github.com/docker/compose/releases/download/v2.8.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose`
+        - `sudo chmod +x /usr/local/bin/docker-compose`
     - nvm
       - `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash`
       - Check instruction to copy commands to `.bashrc`
@@ -150,6 +167,8 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
     - B2 cli
       - `sudo curl -L https://github.com/Backblaze/B2_Command_Line_Tool/releases/latest/download/b2-linux --output /usr/local/bin/b2`
       - `sudo chmod +x /usr/local/bin/b2`
+    - B2/S3 file explorer
+      - ExpanDrive?
     - FlameShot
       - `sudo apt install flameshot`
       - Setup prt scr shortcut to call `flameshot gui`
@@ -158,4 +177,11 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
       - TODO: add command to install it to `/home/leonardo/app/nosqlbooster4mongo-7.1.2.AppImage`
       - `sudo apt install fuse libfuse2`
       - `ln -s ~/myconfig/ubuntu/dotLSApps/NoSqlBooster.desktop ~/.local/share/applications/`
-
+    - GCloud cli: https://cloud.google.com/sdk/docs/install#deb
+      - `echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list`
+      - `curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo tee /usr/share/keyrings/cloud.google.gpg`
+      - `sudo apt-get update && sudo apt-get install google-cloud-cli`
+      - `gcloud init`
+      - `gcloud auth configure-docker`
+      - `sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin`
+      - `gcloud container clusters get-credentials dev --region us-central1 --project PROJECT-NAME`
