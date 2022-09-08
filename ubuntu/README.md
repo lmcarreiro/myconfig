@@ -172,6 +172,12 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
     - FlameShot
       - `sudo apt install flameshot`
       - Setup prt scr shortcut to call `flameshot gui`
+      - If doesn't work, disable wayland
+        - `echo $XDG_SESSION_TYPE`
+        - `sudo vim /etc/gdm3/custom.conf`
+        - Uncomment `WaylandEnable=false`
+        - Restart
+        - `echo $XDG_SESSION_TYPE`
       - TODO: What about videos?
     - NoSqlBooster
       - TODO: add command to install it to `/home/leonardo/app/nosqlbooster4mongo-7.1.2.AppImage`
