@@ -32,4 +32,14 @@
         "key": "alt+right",
         "command": "workbench.action.navigateForward"
     },
+    {
+        "key": "ctrl+alt+r",
+        "command": "typescript.reloadProjects",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+alt+r",
+        "command": "javascript.reloadProjects",
+        "when": "editorFocus"
+    }
 ]
