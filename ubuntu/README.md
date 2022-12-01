@@ -128,6 +128,7 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
         - Docker
         - Better TOML
         - EJS Language support
+        - Partial Diff
     - Slack
       - Download .deb and run `sudo apt install <deb file>`
     - CopyQ
@@ -167,8 +168,9 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
     - B2 cli
       - `sudo curl -L https://github.com/Backblaze/B2_Command_Line_Tool/releases/latest/download/b2-linux --output /usr/local/bin/b2`
       - `sudo chmod +x /usr/local/bin/b2`
-    - B2/S3 file explorer
-      - ExpanDrive?
+    - ExpanDrive
+      - Download .deb: https://www.expandrive.com/download-expandrive/
+      - `sudo apt install ./ExpanDrive_2022.7.1_amd64.deb`
     - FlameShot
       - `sudo apt install flameshot`
       - Setup prt scr shortcut to call `flameshot gui`
@@ -191,3 +193,7 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
       - `gcloud auth configure-docker`
       - `sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin`
       - `gcloud container clusters get-credentials dev --region us-central1 --project PROJECT-NAME`
+
+
+## Useful commands
+- restart audio: `pulseaudio -k && sudo alsa force-reload`
