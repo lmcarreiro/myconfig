@@ -211,6 +211,8 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
       - MySQL Server & Cluster
       - mysql-8.0
       - sudo apt update && sudo apt install -y mysql-workbench-community
+    - LibreOffice
+      - `sudo snap install libreoffice`
 
 
 
