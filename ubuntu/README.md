@@ -144,13 +144,14 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
     - CopyQ
       - `sudo add-apt-repository ppa:hluk/copyq`
       - `sudo apt update && sudo apt install copyq`
-      - Open setting
+      - Open settings
         - Set auto-start
         - Set max entries in history: 9999
         - Set shortcuts
           - Ctrl+Super+V -> Show main window under mouse cursor
           - Ctrl+Super+Shift+V -> Paste and copy next
-      - TODO: how to save copy/paste history to restore in another system?
+      - Import backup
+        - Menu -> File -> Import
     - Docker
       - https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
       - https://docs.docker.com/engine/install/linux-postinstall/
@@ -254,6 +255,7 @@ while [ true ]; do foo; sleep 1; done
   - File `~/.local/share/fish/fish_history`
   - Or command `history | nl`
 - Save history of clipboard (CopyQ)
+  - Menu -> File -> Export
   - Config:
     - Windows: `%APPDATA%\copyq`
     - Linux: `~/.config/copyq`
