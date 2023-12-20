@@ -60,6 +60,12 @@ ln -s ~/myconfig/ubuntu/fish/config.fish ./.config/fish/
 ln -s ~/myconfig/ubuntu/fish/functions/ ./.config/fish/
 ```
 
+Restore command history backup:
+
+- `builtin history clear`
+- `cp ~/.local/share/fish/fish_history.save ~/.local/share/fish/fish_history`
+- `history merge`
+
 ## Other setup
 
 ```bash
@@ -138,9 +144,12 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
     - CopyQ
       - `sudo add-apt-repository ppa:hluk/copyq`
       - `sudo apt update && sudo apt install copyq`
-      - Open setting and set auto-start and shortcuts
-        - Ctrl+Super+V -> Show main window under mouse cursor
-        - Ctrl+Super+Shift+V -> Paste and copy next
+      - Open setting
+        - Set auto-start
+        - Set max entries in history: 9999
+        - Set shortcuts
+          - Ctrl+Super+V -> Show main window under mouse cursor
+          - Ctrl+Super+Shift+V -> Paste and copy next
       - TODO: how to save copy/paste history to restore in another system?
     - Docker
       - https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
@@ -178,6 +187,7 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
     - FlameShot
       - `sudo apt install flameshot`
       - Setup prt scr shortcut to call `flameshot gui`
+        - System Settings -> Keyboard -> Keyboard Shortcuts -> View and Customize Shortcuts -> Custom Shortcuts -> Add
       - If doesn't work, disable wayland
         - `echo $XDG_SESSION_TYPE`
         - `sudo vim /etc/gdm3/custom.conf`
@@ -199,7 +209,7 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
       - `gcloud container clusters get-credentials dev --region us-central1 --project PROJECT-NAME`
     - Grafana Loki LogCLI
       - Go to https://github.com/grafana/loki/releases
-        - `curl -O -L "https://github.com/grafana/loki/releases/download/v2.7.3/logcli-linux-amd64.zip"`
+        - `curl -O -L "https://github.com/grafana/loki/releases/download/v2.8.7/logcli-linux-amd64.zip"`
         - `unzip "logcli-linux-amd64.zip"`
         - `sudo mv ./logcli-linux-amd64 /usr/local/bin/logcli`
         - `sudo chmod a+x /usr/local/bin/logcli`
@@ -214,7 +224,8 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
     - LibreOffice
       - `sudo snap install libreoffice`
     - Redis Desktop Manager
-      - `sudo snap install redis-desktop-manager`
+      - `sudo snap install redis-desktop-manager` (Doesn't work anymore)
+      - `sudo snap install redisinsight`
 
 
 
@@ -223,10 +234,10 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
 
 
 # Listing packages by command name
-apt install apt-file
-apt-file update
-apt-file search --regexp '/top$'
-apt-file search --regexp '/ps$'
+- `apt install apt-file`
+- `apt-file update`
+- `apt-file search --regexp '/top$'`
+- `apt-file search --regexp '/ps$'`
 
 # single line toop:
 
@@ -234,5 +245,20 @@ while [ true ]; do foo; sleep 1; done
 
 
 # To test
-https://github.com/boltgolt/howdy
-https://github.com/devinaconley/pam-facial-auth
+- https://github.com/boltgolt/howdy
+- https://github.com/devinaconley/pam-facial-auth
+
+
+## Unloading checklist
+- Save history of commands (fish)
+  - File `~/.local/share/fish/fish_history`
+  - Or command `history | nl`
+- Save history of clipboard (CopyQ)
+  - Config:
+    - Windows: `%APPDATA%\copyq`
+    - Linux: `~/.config/copyq`
+  - Data/History
+    - Windows: `%APPDATA%\copyq\items`
+    - Linux: `~/.local/share/copyq/copyq/items`
+- Re-create sync code on all brave profiles
+- Backup git repos to save all stashes and files/creds hidden by .gitignore (`npx npkill` to reduce size)
