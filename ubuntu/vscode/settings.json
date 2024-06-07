@@ -26,5 +26,6 @@
   },
   "workbench.iconTheme": "vscode-icons",
   "vsicons.dontShowNewVersionMessage": true,
-  "editor.stickyScroll.enabled": true
+  "editor.stickyScroll.enabled": true,
+  "github.copilot.editor.enableAutoCompletions": true
 }

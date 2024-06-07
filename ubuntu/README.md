@@ -227,12 +227,27 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
     - Redis Desktop Manager
       - `sudo snap install redis-desktop-manager` (Doesn't work anymore)
       - `sudo snap install redisinsight`
+    - VMWare (TODO: comfirm the order of commands)
+      - `sudo modprobe -v vmmon`
+      - `openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=VMware/"`
+      - `sudo mokutil --import MOK.der`
+      - 'vmmon/vmnet error': `sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vmmon)`
 
 
 
 ## Useful commands
 - restart audio: `pulseaudio -k && sudo alsa force-reload`
 
+### tmux
+- `tmux ls`
+- `tmux new -s <name>`
+- `tmux attach -t <name>`
+- `Ctrl+B`, `:setw -g mouse on`
+- `Ctrl+B`, `:set-option -g history-limit 20000`
+- `Ctrl+B`, `d` dettach
+- `Ctrl+B`, `"` split H
+- `Ctrl+B`, `%` split V
+- `Ctrl+B`, `Alt+arrow` resize
 
 # Listing packages by command name
 - `apt install apt-file`
