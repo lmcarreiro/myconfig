@@ -79,6 +79,7 @@ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo s
 ### Settings
 
 - Switch theme to dark + blue
+- Show seconds: `gsettings set org.gnome.desktop.interface clock-show-seconds true`
 
 ## VSCode
 
