@@ -239,6 +239,12 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
 ## Useful commands
 - restart audio: `pulseaudio -k && sudo alsa force-reload`
 
+### copyq
+- See total stored size: `du -h ~/.local/share/copyq/copyq/items`
+- See all files greater than 1 MB: `find ~/.local/share/copyq/copyq/items -size +1M -exec du -h {} \;`
+- Delete all files greater than 1 MB: `find ~/.local/share/copyq/copyq/items -size +1M -delete`
+
+
 ### tmux
 - `tmux ls`
 - `tmux new -s <name>`
