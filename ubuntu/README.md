@@ -119,10 +119,7 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
       - `sudo apt update && sudo apt install 1password`
     - Brave
       - Install steps: https://brave.com/linux/
-        - `sudo apt install apt-transport-https curl`
-        - `sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg`
-        - `echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list`
-        - `sudo apt update && sudo apt install brave-browser`
+        - `curl -fsS https://dl.brave.com/install.sh | sh`
       - Enable brave sync
       - Create profiles (personal + work)
     - VSCode
@@ -130,14 +127,14 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
         - Download deb file
         - `sudo apt install <deb file>`
       - Extensions:
+        - Claude Code
         - GitHub Pull Requests and Issues
         - Git Graph
         - GitLens
         - Prettier
         - ESLint
         - Smart Column Indenter
-        - Docker
-        - Better TOML
+        - Even Better TOML
         - EJS Language support
         - Partial Diff
     - Slack
@@ -157,17 +154,18 @@ rm ./.config/Code/User/keybindings.json && ln -s ~/myconfig/ubuntu/vscode/keybin
       - https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
       - https://docs.docker.com/engine/install/linux-postinstall/
       - Install
-        - `sudo apt-get update && sudo apt-get install ca-certificates curl gnupg lsb-release`
-        - `sudo mkdir -p /etc/apt/keyrings`
-        - `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`
-        - `echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
-        - `sudo apt-get update`
-        - `sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin`
+        - `sudo apt-get update && sudo apt-get install ca-certificates curl`
+        - `sudo install -m 0755 -d /etc/apt/keyrings`
+        - `sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc`
+        - `sudo chmod a+r /etc/apt/keyrings/docker.asc`
+        - (bash) `echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
+        - `sudo apt-get update && sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin`
       - Post-install:
         - `sudo groupadd docker`
         - `sudo usermod -aG docker $USER`
+        - `newgrp docker`
       - docker-compose
-        - `sudo curl -SL https://github.com/docker/compose/releases/download/v2.8.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose`
+        - `sudo curl -SL https://github.com/docker/compose/releases/download/v2.40.3/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose`
         - `sudo chmod +x /usr/local/bin/docker-compose`
     - nvm
       - `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash`
