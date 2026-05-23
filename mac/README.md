@@ -50,3 +50,11 @@ cd ~
 rm ~/Library/Application\ Support/Code/User/settings.json && ln -s ~/myconfig/mac/vscode/settings.json ~/Library/Application\ Support/Code/User/
 rm ~/Library/Application\ Support/Code/User/keybindings.json && ln -s ~/myconfig/mac/vscode/keybindings.json ~/Library/Application\ Support/Code/User/
 ```
+
+## App Store
+
+- Paste
+  - Run in background -> On
+  - iCloud sync -> On
+  - Clipboard history -> Unlimited
+- Magnet
