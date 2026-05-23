@@ -1,0 +1,11 @@
+[user]
+	email = leonardo@zencastr.com
+	name = Leonardo Carreiro
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[core]
+	editor = vim
+[push]
+	autoSetupRemote = true
